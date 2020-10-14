@@ -1,4 +1,4 @@
-## List stacks and queues
+## Week 6 - List stacks and queues
 
 ### Traversing a linked list (cont)
 
