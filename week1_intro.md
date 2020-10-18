@@ -1,4 +1,4 @@
-## Course intro
+## Week 1 - Course intro and Java review
 
 ### Objects
 

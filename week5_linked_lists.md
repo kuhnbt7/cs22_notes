@@ -94,7 +94,7 @@ Example: toUpperCase
 public static void toUpperCase(StringNode str){
     StringNode trav = str;
     while(trav != null){
-        trav.ch = Character.ToUpperCase(trav.ch);
+        trav.ch = Character.toUpperCase(trav.ch);
         trav = trav.next;
     }
 }

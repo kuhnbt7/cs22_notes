@@ -247,6 +247,16 @@ public static void bubbleSort(int[] arr){
 }
 ```
 
+### Time analysis of Bubble Sort
+
+C(n) = O(n<sup>2</sup>)
+
+M(n):
+- worst case: every comparison leads to a swap, so M(n) = O(n<sup>2</sup>)
+- best case: array is already sorted, so no moves are needed
+
+Total running time: O(n<sup>2</sup>)
+
 
 
 
