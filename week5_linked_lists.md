@@ -54,7 +54,7 @@ Each variable represents:
 - a 'box' in memory where the variable resides (address)
 - the value of the contents of that box (value)
 
-![alt text](week5_screenshot_1.png "Screenshot from lecture")
+![alt text](screenshots/week5_screenshot_1.png "Screenshot from lecture")
 
 More advanced expressions:
 

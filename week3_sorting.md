@@ -6,7 +6,7 @@ Template for recursive backtracking:
 
 ```
 boolean findSolution(int n){
-    if (_found a solution_){
+    if (found a solution){
         this.displaySolution();
         return true;
     }

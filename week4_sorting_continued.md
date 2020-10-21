@@ -124,7 +124,7 @@ It's based on the process of mergin 2 already sorted arrays.
 
 To merge we keep track of 3 variables, i, j, and k:
 
-!['alt text'](week4_screenshot_1.PNG "Screenshot from lecture")
+!['alt text'](screenshots/week4_screenshot_1.PNG "Screenshot from lecture")
 
 Then we repeatedly:
 1. Compare A[i] and B[j]
@@ -188,7 +188,7 @@ So M(n) = O(nlogn) and C(n) = O(nlogn)
 
 ### Summary of sorting algorithms (so far)
 
-!['alt text](week4_screenshot_2.PNG 'Screenshot from class')
+!['alt text](screenshots/week4_screenshot_2.PNG 'Screenshot from class')
 
 Insertion best for nearly sorted arrays.
 
@@ -238,7 +238,7 @@ So we want m to be small. But as m decreases, k decreases. And as k increases, s
 
 ### Revisiting Big O
 
-!['alt text](week4_screenshot_3.PNG 'snapshot from class')
+!['alt text](screenshots/week4_screenshot_3.PNG 'snapshot from class')
 
 How does number of operations scale?
 

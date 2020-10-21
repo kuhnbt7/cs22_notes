@@ -8,7 +8,7 @@ An _object_ groups together:
 
 In java, a class is used to define a new type of object. The class serves as a blueprint for the object.
 
-We use a _constructor_ to create an object the the _new_ operator.
+We use a _constructor_ to create an object using the _new_ operator.
 
 Methods that belong to an object are _instance methods_ or non-static methods. They have access to the fields of the object.
 
@@ -108,7 +108,7 @@ public class ArrayBag implements Bag{
 
 Here's what memory looks like after creating 2 ArrayBag objects:
 
-!['alt text'](week1_screenshot_1.PNG "Screenshot from lecture")
+!['alt text'](screenshots/week1_screenshot_1.PNG "Screenshot from lecture")
 
 When we copy a reference variable we are copying a reference (the memory location), not the variable itself.
 

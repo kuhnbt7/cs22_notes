@@ -68,7 +68,7 @@ private boolean findSolution(){
     return false;
 }
 ```
-This iterates through all the possible columns, tried placing a queen in each column and then solving the rest of the board. If the algorithm gets to the end of the board and still returns through, it is solved. Otherwise, the algorithm returns false and it tries the next column.
+This iterates through all the possible columns, tries placing a queen in each column and then solving the rest of the board. If the algorithm gets to the end of the board and still returns through, it is solved. Otherwise, the algorithm returns false and it tries the next column.
 
 Note that we use a wrapper to call the private recursive method.
 
