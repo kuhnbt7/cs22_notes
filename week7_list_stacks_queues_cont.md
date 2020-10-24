@@ -348,5 +348,50 @@ Applications of queues:
 - OS scheduling: processes, packets, etc.
 - simulations of banks, airports, etc (lines)
 
+### State-space search
+
+**Searching** can be defined as finding a _sequence of actions_ that take you from an initial state to a goal state.
+
+Example: n-queens:
+- Initial state: an empty chessboard
+- Actions: add or remove queen
+- Goal state: n-queens placed, with no 2 queens on same row/col/diagonal
+
+**State-space** all possible states that can be reached from initial state.
+
+To formulate a search problem formulate 4 things:
+
+1. Initial state
+2. _Operators_ that take you from one state to another
+3. _Goal test_ that determines whether you're in the goal state
+4. _Costs_ associated with applying a given operator
+
+Example: eight puzzle
+
+Initial state: some configuration of tiles
+Operators: move blank up, down, left, right  
+Goal state: the eight numbers in order
+Costs: cost of each action = 1 because they are all equal
+
+Then:
+If initial state is goal state, return it  
+Otherwise, apply operators to generate all states that are one step from initial state (_successors_)
+
+Different search strategies consider the successors in different orders, may use different data structures to stores the states.
+
+When we generate a state, we create a _search node_ that contains:
+
+- representation of state
+- reference to node containing predecessor
+- operator (action) that led from predecessor to this state
+- number of steps from initial state to this one
+- cost of getting from initial state to this one
+- estimate of cost remaining to get to goal
+
+The predecessor references connect the search nodes, creating a data structure known as a _tree_.
+
+When we reach a goal, we trace up tree to find the solution.
+
+
 
 
