@@ -1,0 +1,22 @@
+public class Problem7{
+    
+    public static void main(String [] args){
+        int [] testArray = {10, 4, 7, 7,  8, 5, 15};
+        pairsums(testArray);
+    }
+    
+    public static void pairSums(int k, int arr[]){
+        int comparisons = 0;
+        for (int i = 0; i < arr.length; i++){
+            for (int j = i + 1; j < arr.length; j++){
+                comparisons ++;
+                if (arr[i] + arr[j] == k){
+                    System.out.println(arr[i] + " + " + arr[j] + " = " + k);
+                }
+            }
+        }
+        print("Comparisions: " + comparisons);
+    
+    public static void pairSumsImproved(int k, int arr[]){
+    }
+        

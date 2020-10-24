@@ -1,0 +1,31 @@
+To create bubbleSort2, I modified bubbleSort to include a boolean variable 'swapped' that measures whether any array elements
+were swapped during each iteration of the algorithm. If no elements are swapped, the array is by definition sorted, and the
+algorithm can be stopped early. I expected that this modification would have a large impact on running time for arrays that 
+were sorted or almost sorted, but not much impact on arrays that were not at all sorted. I tested this hypothesis by running
+bubbleSort2 on arrays of size 1000, 2000, 4000, 8000, and 16000, both randomly arranged and presorted. I ran 10 runs for each
+array size. The results were the following:
+
+Random array:
+Array size: 1000 498357.0 average comparisons, 753429.0 average moves
+Array size: 2000 1997241.0 average comparisons, 2984824.0 average moves
+Array size: 4000 7993570.0 average comparisons, 1.1954891E7 average moves
+Array size: 8000 3.198436E7 average comparisons, 4.7851228E7 average moves
+Array size: 16000 1.27975648E8 average comparisons, 1.92027968E8 average moves
+
+Fully sorted array:
+Array size: 1000 999.0 average comparisons, 0.0 average moves
+Array size: 2000 1999.0 average comparisons, 0.0 average moves
+Array size: 4000 3999.0 average comparisons, 0.0 average moves
+Array size: 8000 7999.0 average comparisons, 0.0 average moves
+Array size: 16000 15999.0 average comparisons, 0.0 average moves
+
+Both the number of comparisons and the number of moves for a random array increases by 
+approximately a factor of four each time the size of the array doubles. Therefore,
+the big O efficiency class (comparisons, moves, and overall) for bubbleSort2 applied to 
+randomly sorted arrays is O(n^2).
+
+By contrast, the number of comparisons for an already sorted array is always equal to
+n - 1. The number of moves is zero, because the array is already sorted. Therefore, c(n)
+is O(n), and I don't think m(n) fits into any class we studied since it is zero. Since the
+number of comparisons is larger, the overall big O efficiency class for bubbleSort2 applied
+to sorted arrays is O(n).

@@ -1,0 +1,59 @@
+/**
+ * Auto Generated Java Class.
+ */
+public class StringRecursion {
+    
+    public static void printLetters(String str){
+        if (str == null || str.equals("")){
+            return;
+        }
+        if (str.length() == 1){
+            System.out.println(str);
+            return;
+        }
+
+        System.out.print(str.charAt(0) + ", ");
+        printLetters(str.substring(1));
+    }
+    
+    public static String replace(String str, char oldChar, char newChar){
+        if (str == null){
+            return null;
+        } else if (str.equals("")){
+            return "";
+        }
+        if (str.charAt(0) == oldChar){
+            return newChar + replace(str.substring(1), oldChar, newChar);
+        } else {
+            return str.charAt(0) + replace(str.substring(1), oldChar, newChar);
+        }
+            
+    }
+    
+    public static int indexOf(char ch, String str){
+        if(str == null || str.equals("")){
+            return -1;
+        }
+        if (str.charAt(0) == ch){
+            return 0;
+        }
+        int substrSearch = indexOf(ch, str.substring(1));
+        if(substrSearch == -1){
+            return -1;
+        }                       
+        return 1 + substrSearch;
+    }
+                  
+                  
+        
+        
+    public static void main(String[] args) { 
+        printLetters("this is a test");
+        System.out.println();
+        System.out.println(replace("base case", 'r', 'y'));
+        System.out.println(indexOf('y', "Rabbit"));
+
+    }
+    
+    
+}
