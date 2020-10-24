@@ -1,0 +1,33 @@
+/**
+ * Auto Generated Java Class.
+ */
+public class Test {
+    
+    
+    public static void main(String[] args) { 
+        generateSums(4);
+        generateSums2(6);
+    }
+    
+    public static void generateSums(int n) {
+    for (int i = 1; i <= n; i++) {
+        int sum = 0;
+        for (int j = 1; j <= i; j++) {
+            sum = sum + j; // how many times is this executed?
+        }
+        System.out.println(sum);
+        }
+    }
+    
+    public static void generateSums2(int n){
+        int lastSum = 0;
+        int sum = 0;
+        
+        for (int i = 1; i <= n; i++){
+            sum = i + lastSum;
+            lastSum = sum;
+            System.out.println(sum);
+        }
+    }
+            
+}
