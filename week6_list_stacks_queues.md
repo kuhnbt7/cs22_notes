@@ -159,7 +159,7 @@ public class LLList implements List{
         int travIndex = -1;
         while (travIndex < i){
             travIndex ++;
-            trave = trav.next;
+            trav = trav.next;
         }
     }
 
