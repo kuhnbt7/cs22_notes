@@ -146,7 +146,92 @@ Visit the nodes one level at a time, from top to bottom and left to right.
 
 This is like breadth-first search and can be done using a queue (no in-class implementation).
 
-(stopped at 1:00:26)
+### Using a binary tree for an algebraic expression
+
+Ex ((a + (3*c)) - (d / 2))
+
+!['alt text'](screenshots/week9_screenshot_1.PNG 'screenshot from class')
+
+Make the leaf nodes constants or variables and interior nodes operators. Their children are their operands.
+
+Inorder traversal will give the conventional algebraic notation - print '(' before recursive call on left subtree and ')' after recursive call on right subtree.
+
+Preorder gives functional notation.
+
+Postorder gives order in which computation must be carried out on a stack calculator.
+
+### Fixed length character encodings
+
+A character encoding maps each character to a number - computers usually use these.
+
+Ex ASCII: 8 bits per character
+Unicode: 16 bits per character
+
+All encodings have the same length, and a character always has the same encoding.
+
+But they tend to waste space. Ex - a newspaper article might only have 64 unique characters. You only need 6 bits to represent. You could save even more space by giving most common encodings 3-4 bits and less frequent ones 6 bits. 
+
+So variable-length encodings allow us to compress a text file.
+
+But how do you know how many bits the next character has?
+
+One requirement - no character's encoding can be the prefix of another character's encoding.
+
+One solution:
+
+### Huffman encoding
+
+Based on actual character frequencies in a given document.
+
+Huffman uses a binary tree:
+- To determine encoding of each character
+- To decode an encoded file
+
+The edges are 0 or 1 - left branches are 0, right branches 1.
+Leaf nodes are where the characters live. Interior nodes don't have characters.
+
+To get a character's encoding, follow the path from the root to its leaf node.
+
+### To build a Huffman Tree
+
+1. Read thru the text to determine text frequencies
+2. Create a list of nodes containing (character, frequency) pairs for each character in the text, sorted by increasing frequency
+3. Remove and merge the nodes with 2 lowest frequencies, forming a new node that is their parent. The parent gets the sum of the frequencies of its children
+4. Add the parent to the listed of nodes, retaining sorted order
+5. Repeat 3 and 4 until there is only one node in the list, which is the root
+
+So this creates a set of links between the different characters:
+
+!['alt text](screenshots/week9_screenshot_2.png 'alt text')
+
+The most frequent characters end up with 2 bit encodings.
+
+The shape of the tree depends on the character frequencies.
+
+### Compressing a file using Huffman encoding
+
+1. Read thru input and build huffman tree
+2. Write a file header for the output file
+    - Include character frequencies
+    - Either include all characters or make list of (character, frequency) if you are going to use a subset
+3. Traverse the tree to create a table contatining encoding of each character
+4. Read thru file a second time and write the huffman code for each character to the output file
+
+### Decompressing a file
+
+1. Rebuild the tree from the frequency table
+2. Read one bit at a time and traverse the tree
+3. When you get to a leaf, return that character and return to the root
+
+## Search Trees
+
+_Search tree_: for every node k:
+- all nodes in k's left subtree are < k
+- all nodes in k's right subtree are >= k
+
+With a search tree, an inorder traversal visits the nodes in order (of increasing key values).
+
+So you can always figure out whether to go down a path based on whether the key is less than or greater than the value.
 
 
 
