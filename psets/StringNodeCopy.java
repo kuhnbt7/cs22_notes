@@ -23,14 +23,14 @@ import java.util.*;
  * and it also allows the methods to handle empty strings, which are 
  * represented using a value of null.
  */
-public class StringNode {
+public class StringNodeCopy {
     private char ch;
     private StringNode next;
 
     /**
      * Constructor
      */
-    public StringNode(char c, StringNode n) {
+    public StringNodeCopy(char c, StringNode n) {
         this.ch = c;
         this.next = n;
     }
@@ -87,28 +87,23 @@ public class StringNode {
      * The empty string comes before any non-empty string, 
      * and the prefix of a string comes before the string
      * itself (e.g., "be" comes before "become").
-     */  
-    public static int compareAlpha(StringNode str1, StringNode str2){
-        if (str1 == null && str2 == null){
+     */
+    public static int compareAlpha(StringNode str1, StringNode str2) {
+        if (str1 == null && str2 == null) {
             return 0;
-        } 
-        
-        while (str1 != null ||  str2 != null){ // if false, both strings have reached their end without returning so they are equal
-            if (str1 == null){ // str1 has reached its end
-                return 1;
-            } else if (str2 == null){  // str2 has reached its end
-                return 2;
-            } else if (str1.ch < str2.ch) {
-                return 1;
-            } else if (str2.ch < str1.ch) {
-                return 2;
-            }
-            str1 = str1.next;
-            str2 = str2.next;
+        } else if (str1 == null) {
+            return 1;
+        } else if (str2 == null) {
+            return 2;
+        } else if (str1.ch < str2.ch) {
+            return 1;
+        } else if (str2.ch < str1.ch) {
+            return 2;
+        } else {
+            int compareRest = compareAlpha(str1.next, str2.next);
+            return compareRest;
         }
-        return 0;
     }
-            
 
     /**
      * convert - converts a standard Java String object to a linked-list
@@ -293,17 +288,14 @@ public class StringNode {
         if (str == null) {
             return 0;
         }
-         int count = 0;
-         StringNode trav = str;
-         while (trav != null){
-             if (trav.ch == ch){
-                 count ++;
-             }
-             trav = trav.next;
-         }
-         return count;
+     
+        int numInRest = numOccur(str.next, ch);
+        if (str.ch == ch) {
+            return 1 + numInRest;
+        } else {
+            return numInRest;
+        }
     }
-         
 
     /**
      * print - recursively writes the specified linked-list string to System.out
@@ -358,12 +350,12 @@ public class StringNode {
      * linked-list string to upper case.  Modifies the list itself,
      * rather than creating a new list.
      */
-    public static void toUpperCase(StringNode str) {
-        if (str == null){
-            return;
+    public static void toUpperCase(StringNode str) {        
+        StringNode trav = str; 
+        while (trav != null) {
+            trav.ch = Character.toUpperCase(trav.ch); 
+            trav = trav.next;
         }
-        str.ch = Character.toUpperCase(str.ch);
-        toUpperCase(str.next);
     } 
               
     public static void main(String[] args) throws IOException {

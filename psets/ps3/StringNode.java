@@ -4,8 +4,8 @@
  * Computer Science E-22, Harvard University
  * 
  * modified by:
- *   name:
- *   email:
+ *   name: Ben Kuhn
+ *   email: kuhnbt@gmail.com
  */
 
 import java.io.*;
@@ -93,12 +93,12 @@ public class StringNode {
             return 0;
         } 
         
-        while (str1 != null ||  str2 != null){ // if false, both strings have reached their end without returning so they are equal
-            if (str1 == null){ // str1 has reached its end
+        while (str1 != null ||  str2 != null){ // if str1 and str2 are null, both strings have reached their end without returning so they are equal
+            if (str1 == null){ // str1 has reached its end, so it's first
                 return 1;
-            } else if (str2 == null){  // str2 has reached its end
+            } else if (str2 == null){  // str2 has reached its end, so it's first
                 return 2;
-            } else if (str1.ch < str2.ch) {
+            } else if (str1.ch < str2.ch) { 
                 return 1;
             } else if (str2.ch < str1.ch) {
                 return 2;
@@ -139,14 +139,21 @@ public class StringNode {
         if (str == null) {
             return null;
         }
+        
+        StringNode copy = new StringNode(str.ch, null);  // make copy of the first StringNode in str
+        StringNode trav = copy;  // to traverse copy
+        
 
-        // make a recursive call to copy the rest of the list
-        StringNode copyRest = copy(str.next);
-           
-        // create and return a copy of the first node, 
-        // with its next field pointing to the copy of the rest
-        return new StringNode(str.ch, copyRest);
+        while (str.next != null){
+            str = str.next;    // get next Node from str
+            trav.next = new StringNode(str.ch, null);   // set next Node in copy equal to str ch
+            trav = trav.next;
+        }
+        
+        return copy;
     }
+        
+        
 
     /**
      * deleteChar - deletes character i in the given linked-list string and
@@ -216,6 +223,36 @@ public class StringNode {
         // by using trail, which is pointing to the current last node.
         trail.next = newNode;
         return str;
+    }
+    
+    public static StringNode insertBeforeRecursive(StringNode str, char newChar, 
+                                         char beforeChar) 
+    {
+        if (str == null) {
+            return null;
+        }
+        
+        StringNode trav = str;
+        
+        if (str.ch == beforeChar){ // first StringNode is beforeChar (this statement will never be true in recursive calls)
+            StringNode newNode = new StringNode(newChar, trav);
+            return newNode;
+        }
+        
+        if (trav.next == null){ // we are at the last StringNode before end
+            trav.next = new StringNode(newChar, null);
+            return str;
+        }
+            
+        if (trav.next.ch == beforeChar) {
+            StringNode newNode = new StringNode(newChar, null);
+            newNode.next = trav.next;
+            trav.next = newNode;
+            return str;
+        }
+
+        return new StringNode(str.ch, insertBeforeRecursive(str.next, newChar, beforeChar));
+        
     }
 
     /**
@@ -296,7 +333,7 @@ public class StringNode {
          int count = 0;
          StringNode trav = str;
          while (trav != null){
-             if (trav.ch == ch){
+             if (trav.ch == ch){  // if current char equals ch, increment count
                  count ++;
              }
              trav = trav.next;
@@ -362,9 +399,89 @@ public class StringNode {
         if (str == null){
             return;
         }
-        str.ch = Character.toUpperCase(str.ch);
+        str.ch = Character.toUpperCase(str.ch);  // convert current char to upper and make recursive call on next character
         toUpperCase(str.next);
-    } 
+    }
+    
+    /**
+     * reverseInPlace - reverse all the next references in specified str 
+     * so that the string is reversed. Return a reference to the
+     * beginning of the new string
+     **/
+    
+    public static StringNode reverseInPlace(StringNode str){
+        if (str == null){
+            return null;
+        }
+        
+        // if str has one element, nothing to do
+        if (str.next == null){
+            return str;
+        }
+        
+        // if str has 2 elements, reverse them and return reference to new first node
+        StringNode first = str;
+        StringNode second = first.next;
+        if (second.next == null){
+            second.next = first;
+            first.next = null;
+            return second;
+        }
+
+        // if str has 3 elements, reverse them and return a reference to new first node
+        StringNode third = second.next;
+        first.next = null;
+        if (third.next == null){
+            third.next = second;
+            second.next = first;
+            return third;
+        }
+        
+        // if str has 3+ elements, iterate through it, reversing next references at each node
+        while (true){
+            second.next = first;
+            if (third.next == null){   // no more elements after third
+                third.next = second;
+                return third;
+            }
+            first = third.next;
+            third.next = second;
+            if (first.next == null){   // no more elements after first
+                first.next = third;
+                return first;
+            }
+            second = first.next;
+            first.next = third;
+            if (second.next == null){   // no more elements after second
+                second.next = first;
+                return second;
+            }
+            third = second.next;
+        }
+    }
+    
+    /**
+     * lastIndexOf - return the last index of ch in str. If ch is not present in str, return -1
+     **/
+    public static int lastIndexOf(StringNode str, char ch){
+        if (str == null){
+            return -1;
+        }
+        
+        if (str.ch == ch){
+            int nextIndex = lastIndexOf(str.next, ch);  // search for occurrences of ch in remainder of str
+            if (nextIndex == -1){  // if no more occurrences, return 0
+                return 0;
+            }
+            return nextIndex + 1;  // if more occurrences, return next index relative to current index, and increment 1
+        }
+        
+        int lastIndex = lastIndexOf(str.next, ch);  // if str.ch != ch, search the rest of str
+        if (lastIndex == -1){
+            return -1;
+        }
+        return 1 + lastIndex;
+    }   
               
     public static void main(String[] args) throws IOException {
         Scanner in = new Scanner(System.in);
@@ -420,5 +537,6 @@ public class StringNode {
         char before = in.nextLine().charAt(0);
         str1 = StringNode.insertBefore(str1, ch, before);
         System.out.println(str1);
+ 
     }
 }

@@ -92,7 +92,7 @@ When choosing nodes to consider, always choose the deepest one
 
 So you always go down a given path until stuck, then backtrack
 
-This uses a stack - snce we can only add to the top, it takes the successors first:
+This uses a stack - since we can only add to the top, it takes the successors first:
 
 ```
 public class DepthFirstSearcher extends Searcher{

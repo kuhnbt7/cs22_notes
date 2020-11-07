@@ -1,11 +1,7 @@
 /*
  * LLList.java
  *
- * Computer Science E-22 
- * 
- * modified by:
- *   name: Ben Kuhn
- *   email: kuhnbt@gmail.com
+ * Computer Science E-22
  */
 
 import java.util.*;
@@ -205,30 +201,4 @@ public class LLList implements List {
             return item;
         }
     }
-    
-    /*
-     * remove all intances of item from List. If one or more instances are removed, return true, else return false
-     */
-    
-    public boolean removeAll (Object item) {
-        Node first = head;
-        Node second = first.next;
-        boolean found = false;
-
-        while (second != null){    // we are not at the end of the list 
-            if (second.item.equals(item)){
-                if (second.next == null){  // this is the last item
-                    first.next = null;
-                } else {
-                    first.next = second.next;
-                    second = first.next;
-                }
-                found = true;
-            }
-            first = second;
-            second = first.next;
-        }
-        return found;
-    }
-    
 }

@@ -4,8 +4,8 @@
  * Computer Science E-22
  *
  * modified by:
- *   name: Ben Kuhn
- *   email: kuhnbt@gmail.com
+ *   name: 
+ *   email:
  */
 
 import java.util.*;
@@ -134,39 +134,4 @@ public class ArrayList implements List {
         // still needs to be implemented
         return null;
     }
-    
-    /*
-     * removeAll - remove all instances of item
-     */
-    public boolean removeAll(Object item){
-        boolean found = false;
-        // first remove elements equal to item
-        for (int i = 0; i < length; i++){
-            if (items[i].equals(item)){
-                found = true;
-                items[i] = null;
-            }
-        }
-        // then clean up null values
-        int numNulls = 0;
-        for (int i = 0; i < length; i++){
-            items[i-numNulls] = items[i];
-            if (items[i] == null){
-                numNulls ++;
-            }
-                 
-        }
-
-        
-        // set final elements equal to null
-        for (int i = length - numNulls; i < length; i++){
-            items[i] = null;
-        }
-        
-        // adjust list length
-        length -= numNulls;
-        
-        return found;
-    }
-
 }
