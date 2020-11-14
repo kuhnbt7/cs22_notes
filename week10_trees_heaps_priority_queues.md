@@ -240,7 +240,7 @@ So time complexity of search and insertion are O(logn). Search visits at most h+
 
 Options we've talked about so far don't work well if you want to store data externally on disk.
 
-Data is transferred to/from disk in units called __blocks__, typically 4 to 8 kb in size.
+Data is transferred to/from disk in units called _blocks_, typically 4 to 8 kb in size.
 
 Accessing disk is much slower than memory - 10 milliseconds vs 10 nanoseconds.
 
