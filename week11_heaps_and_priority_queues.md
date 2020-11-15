@@ -28,7 +28,7 @@ Given a node in a[i]:
 - its parent is in a[(i-1) / 2] (using integer division)
 
 ### Heaps
-A heap is a cmplete binary tree where every interior node is greater than or equal to its children.
+A heap is a complete binary tree where every interior node is greater than or equal to its children.
 
 The largest value is always at the root. The smallest value is always in one of the leaf nodes.
 
@@ -112,7 +112,7 @@ public T remove(){
     // check for empty heap goes here
     T toRemove = contents[0];
 
-    contents[0] = contents[numItems -1];
+    contents[0] = contents[numItems - 1];
     numItems --;
     siftDown(0);
     return toRemove;
@@ -318,6 +318,64 @@ public class Player {
     private String firstName;
 }
 ```
+Store player's records in an array: 
+    Player[] teamRecords = new Player[100];
+
+In this case, search and insertion are O(1).
+
+In real world problems, things are not this simple.
+
+1. Multiple data items can have same key
+2. Key values might not work as array indices
+3. Range of possible values might prevent us from giving each key value its own position in array.
+
+To handle these problems, we use _hashing_:
+- use a _hash function_ to convert keys into array indices
+- use techniques to handle cases in which multiple keys are assigned the same hash value
+
+The resulting data structure is a _hash table_.
+
+The **hash function** defines a mapping from keys to integers.
+
+A simple hash function for keys of lower-case letters: h(key) = ASCII value of first character - ASCII value of 'a'
+
+Example:
+- h("ant") = ASCII for 'a' - ASCII for 'a' = 0
+- h("cat") = ASCII for 'c' - ASCII for 'a' = 2
+
+h(key) is known as key's hash code.
+
+A _collision_ occurs when items with different keys are assigned the same hash code.
+
+### Dealing with collisions - separate chaining
+
+- Each position in the hash table serves as a _bucket_ that can store multiple data items.
+
+Two options:
+1. each bucket is itself an array - but need to preallocate, and bucket can fill up
+2. each bucket is a linked list - items with same hash code are 'chained' together
+
+### Dealing with collisions - open addressing
+
+- When position assigned by hash function is occupied, find another open position
+
+The process of finding an open position is called _probing_. We need to use probing both when inserting and searching.
+
+#### Linear probing
+
+Probe sequence: keep incrementing index and wrap around as needed. If h(key) is full, try h(key +1), h(key +2), etc.
+
+Advantage to linear probing: not going to miss an open cell
+
+Disadvantage: we end up with clusters of occupied cells that lead to longer subsequent probes.
+
+### Quadratic probing
+
+Probe sequence: h(key), h(key) + 1<sup>2</sup>, h(key) + 2<sup>2</sup>, etc, wrapping around as necessary.
+
+Advantage to quadratic probing: smaller clusters of occupied cells
+
+Disadvantage: may fail to find existing open position
 
 
 
