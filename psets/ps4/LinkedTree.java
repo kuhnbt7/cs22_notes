@@ -54,15 +54,15 @@ public class LinkedTree {
      * from two arrays of keys and dataItems
      */
     private Node balancedTree(int[] keys, Object[] dataItems, int start, int end){
-        if (start == end){
+        if (start == end){  // base case
             return null;
         }
 
-        int newRootIndex = (start + end) / 2;
+        int newRootIndex = (start + end) / 2;  // make the root the middle item using integer division 
         Node newRoot = new Node(keys[newRootIndex], dataItems[newRootIndex]);
         
-        newRoot.left = balancedTree(keys, dataItems, start, newRootIndex);
-        newRoot.right = balancedTree(keys, dataItems, newRootIndex + 1, end);
+        newRoot.left = balancedTree(keys, dataItems, start, newRootIndex);  // recursively create left branch 
+        newRoot.right = balancedTree(keys, dataItems, newRootIndex + 1, end);  // recursively create right branch
         
         if (newRoot.left != null){
             newRoot.left.parent = newRoot;
@@ -417,7 +417,7 @@ public class LinkedTree {
         }
     }  
 
-    /* Returns a preorder iterator for this tree. */
+    /* Returns a inorder iterator for this tree. */
     public LinkedTreeIterator inorderIterator() {
         return new InorderIterator();
     }
@@ -429,8 +429,11 @@ public class LinkedTree {
         private Node nextNode;
         
         private InorderIterator(){
-            // the traversal starts at the leftmost leaf node
+            if (root == null) {
+                throw new NoSuchElementException();
+            }
             nextNode = root;
+            // the traversal starts at the leftmost leaf node
             while (nextNode.left != null){
                 nextNode = nextNode.left;
             }
@@ -445,28 +448,27 @@ public class LinkedTree {
                 throw new NoSuchElementException();
             }
             
-            int key = nextNode.key;
+            int key = nextNode.key;  // this is the key to be returned
             
-            
-            // if nextNode has right branch, go to it then find a leaf on its left branch
+            // now advance nextNode            
+            // if nextNode has a right branch, go to it, then find the leftmost leaf
             if (nextNode.right != null){
                 nextNode = nextNode.right;
                 while (nextNode.left != null){
                     nextNode = nextNode.left;
                 }
-            } else {  // otherwise, go back up tree and find first unvisited node
+            } else {  // otherwise, go back up tree and find the first unvisited node
                 Node parent = nextNode.parent;
                 Node child = nextNode;
-                while (parent != null && parent.right == child){
+                while (parent != null && parent.right == child){  // if child was on left, this will evaluate to false
                     child = parent;
                     parent = child.parent;
                 }
                 nextNode = parent;
             
-            if (parent == null){
-                nextNode = null;
-            }
-            
+                if (parent == null) { // we're back to the root
+                    nextNode = null;
+                }
             }
             return key;
             
@@ -520,7 +522,7 @@ public class LinkedTree {
      * or -1 if it does not occur
      */
     
-    private int depthIter(int key){
+    public int depthIter(int key){
         
         if (root == null) {
             return -1;
@@ -546,7 +548,7 @@ public class LinkedTree {
     }
     
     /*
-     * sumEvens - returns sum of even-valued keys in the LinkedTree
+     * sumEvens - wrapper method which returns sum of even-valued keys in the LinkedTree
      */
     public int sumEvens(){
         return sumEvensInTree(root);
@@ -730,6 +732,49 @@ public class LinkedTree {
         }
     
         System.out.println();
+        System.out.println("--- Testing deleteMax() from Problem 7.3 ---");
+        System.out.println();
+        System.out.println("(8) Testing on tree from problem 7");
+        
+        try {
+            LinkedTree tree = new LinkedTree();
+            int[] keys = {37, 26, 42, 13, 35, 56, 30, 47, 70};
+            tree.insertKeys(keys);
+ 
+            int results = tree.deleteMax();
+            System.out.println("actual results:");
+            System.out.println(results);
+            System.out.println("expected results:");
+            System.out.println(70);
+            System.out.print("MATCHES EXPECTED RESULTS?: ");
+            System.out.println(results == 70);
+        } catch (Exception e) {
+            System.out.println("INCORRECTLY THREW AN EXCEPTION: " + e);
+        }
+        
+        System.out.println();
+
+        System.out.println("--- Testing deleteMax() from Problem 7.3 ---");
+        System.out.println();
+        System.out.println("(9) Testing on new tree");
+        
+        try {
+            LinkedTree tree = new LinkedTree();
+            int[] keys = {10, 8, 5, 14, 23, 21, 35, 33, 24};
+            tree.insertKeys(keys);
+ 
+            int results = tree.deleteMax();
+            System.out.println("actual results:");
+            System.out.println(results);
+            System.out.println("expected results:");
+            System.out.println(35);
+            System.out.print("MATCHES EXPECTED RESULTS?: ");
+            System.out.println(results == 35);
+        } catch (Exception e) {
+            System.out.println("INCORRECTLY THREW AN EXCEPTION: " + e);
+        }
+        
+        System.out.println();
         
         System.out.println("--- Testing inorderIterator from Problem 8 ---");
         System.out.println();
@@ -800,56 +845,13 @@ public class LinkedTree {
         }
         System.out.println();
                
-        System.out.println("--- Testing deleteMax() from Problem 7.3 ---");
-        System.out.println();
-        System.out.println("(8) Testing on tree from problem 7");
-        
-        try {
-            LinkedTree tree = new LinkedTree();
-            int[] keys = {37, 26, 42, 13, 35, 56, 30, 47, 70};
-            tree.insertKeys(keys);
- 
-            int results = tree.deleteMax();
-            System.out.println("actual results:");
-            System.out.println(results);
-            System.out.println("expected results:");
-            System.out.println(70);
-            System.out.print("MATCHES EXPECTED RESULTS?: ");
-            System.out.println(results == 70);
-        } catch (Exception e) {
-            System.out.println("INCORRECTLY THREW AN EXCEPTION: " + e);
-        }
-        
-        System.out.println();
-
-        System.out.println("--- Testing deleteMax() from Problem 7.3 ---");
-        System.out.println();
-        System.out.println("(9) Testing on new tree");
-        
-        try {
-            LinkedTree tree = new LinkedTree();
-            int[] keys = {10, 8, 5, 14, 23, 21, 35, 33, 24};
-            tree.insertKeys(keys);
- 
-            int results = tree.deleteMax();
-            System.out.println("actual results:");
-            System.out.println(results);
-            System.out.println("expected results:");
-            System.out.println(35);
-            System.out.print("MATCHES EXPECTED RESULTS?: ");
-            System.out.println(results == 35);
-        } catch (Exception e) {
-            System.out.println("INCORRECTLY THREW AN EXCEPTION: " + e);
-        }
-        
-        System.out.println();
         System.out.println("--- Testing balanced tree constructor from Problem 9 ---");
         System.out.println();
         System.out.println("(10) Testing on new tree");
         
         try {
-            int[] keys = {10, 8, 5, 14, 23, 21, 35, 33, 24};
-            String[] dataItems = {"d10", "d8", "d5", "d14", "d23", "d21", "d35", "d33", "d24"};
+            int[] keys = {10, 8, 4, 2, 15, 12, 7};
+            String[] dataItems = {"d10", "d8", "d4", "d2", "d15", "d12", "d7"};
             LinkedTree tree = new LinkedTree(keys, dataItems);
  
             System.out.println("actual results:");
