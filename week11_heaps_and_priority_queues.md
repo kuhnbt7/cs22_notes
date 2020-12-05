@@ -192,6 +192,8 @@ Algorithm:
     contents[i], where i = ((n -1) - 1)/2 = (n - 2) / 2
 2. sift down contents[i] and all elements to the left
 
+Work right to left (thinking in array terms).
+
 So we're basically starting with the lowest thing that needs to be sifted and working our way up.
 
 ### Heapsort
