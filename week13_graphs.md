@@ -128,7 +128,7 @@ A _tour_ is a path that:
 
 Brute force: perform exhaustive search of all possible tours. Can show this as a tree:
 
-!['alt text'](screenshots/week13_screenshot_2.png 'screenshot from class')
+!['alt text'](screenshots/week13_screenshot_2.PNG 'screenshot from class')
 
 For n cities, there are (n - 1)! leaf nodes - half are redundant.
 
@@ -137,7 +137,7 @@ Informed search: focus on most promising paths; use a function that estimates ho
 Better than brute forces, but still exponential space and time.
 
 Review of algorithm complexity:
-!['alt text'](screenshots/week13_screenshot_3.png 'screenshot from class')
+!['alt text'](screenshots/week13_screenshot_3.PNG 'screenshot from class')
 
 Algorithms above dotted line are called _polynomial time_.
 
