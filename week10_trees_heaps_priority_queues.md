@@ -264,7 +264,7 @@ A large value of m doesn't make sense for an in-memory tree because it leads to 
 
 Same as searching a 2-3 tree, you go to the appropriate child based on the value of the key you're searching for.
 
-Insertion also similar. Search for key until you reach a leaf node. If the mode has fewer than 2m items, add the item to the leaf node. Otherwise split the node, dividing up the 2m + 1 items. The smallest m remain in the original node. The largest m go in a new node. The middle entry gets sent up and inserted into the parent. Like 2-3 trees, if you make it up to the root, the root is split and one item goes up. Whe an internal node is split, its references to its childrena re split as well.
+Insertion also similar. Search for key until you reach a leaf node. If the mode has fewer than 2m items, add the item to the leaf node. Otherwise split the node, dividing up the 2m + 1 items. The smallest m remain in the original node. The largest m go in a new node. The middle entry gets sent up and inserted into the parent. Like 2-3 trees, if you make it up to the root, the root is split and one item goes up. Whe an internal node is split, its references to its childrena are split as well.
 
 ### Time analysis of B-trees
 
