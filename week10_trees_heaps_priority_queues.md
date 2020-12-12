@@ -220,7 +220,7 @@ To insert an item with key k:
     - split L into two 2 nodes containing the items with the smallest and largest of: k, L's first key, L's 2nd key
     - the middle item is 'sent up' and inserted into L's parent
 
-!['alt text'](screenshots/week10_screenshot_1.png 'screenshot from class')
+!['alt text'](screenshots/week10_screenshot_1.PNG 'screenshot from class')
 
 We don't group duplicates together in 2-3 trees.
 
