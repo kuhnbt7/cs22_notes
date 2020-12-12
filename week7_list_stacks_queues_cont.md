@@ -275,7 +275,7 @@ So we use the mod operator (%) when updating front or rear. It gives you the rem
 
 Another problem: when array is both full and empty, rear is one behind front
 
-!['alt text'](screenshots/week7_screenshot_1.png 'screenshot from class')
+!['alt text'](screenshots/week7_screenshot_1.png?raw=true 'screenshot from class')
 
 This is why we maintain numItems - we can't easily distinguish empty from full.
 
