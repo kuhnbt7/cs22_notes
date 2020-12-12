@@ -228,7 +228,7 @@ What if there's no room in the parent when you try to insert - eg the parent is 
 
 You keep splitting - send the middle element of the parent up to its parent. If you get to the root and it is also already a 3 node, you slit and the middle element become the new root.
 
-!['alt text'](screenshots/week10_screenshot_2.png 'screenshot from class')
+!['alt text'](screenshots/week10_screenshot_2.PNG 'screenshot from class')
 
 ### Efficiency of 2-3 trees
 
