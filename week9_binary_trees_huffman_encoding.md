@@ -202,7 +202,7 @@ To get a character's encoding, follow the path from the root to its leaf node.
 
 So this creates a set of links between the different characters:
 
-!['alt text](screenshots/week9_screenshot_2.png 'alt text')
+!['alt text](screenshots/week9_screenshot_2.PNG 'alt text')
 
 The most frequent characters end up with 2 bit encodings.
 
