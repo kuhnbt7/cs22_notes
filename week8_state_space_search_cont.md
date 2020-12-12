@@ -126,7 +126,7 @@ while (true){
     // perform DFS with depth limit of d
     d++;
 }
-
+```
 So it tries DFS with multiple depth limits.
 
 This combines best of BFS and DFS. It is complete and optimal when BFS is.
